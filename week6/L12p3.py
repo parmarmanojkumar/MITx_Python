@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
+
 """
 Created on Sun Feb 21 22:05:19 2016
-
 @author: VirKrupa
 """
 
@@ -11,7 +10,6 @@ class Hand(object):
     def __init__(self, n):
         '''
         Initialize a Hand.
-
         n: integer, the size of the hand.
         '''
         assert type(n) == int
@@ -43,10 +41,8 @@ class Hand(object):
     def setDummyHand(self, handString):
         '''
         Allows you to set a dummy hand. Useful for testing your implementation.
-
         handString: A string of letters you wish to be in the hand. Length of this
         string must be equal to self.HAND_SIZE.
-
         This method converts sets the hand attribute to a dictionary
         containing the letters of handString.
         '''
@@ -77,10 +73,8 @@ class Hand(object):
     def update(self, word):
         """
         Does not assume that self.hand has all the letters in word.
-
         Updates the hand: if self.hand does have all the letters to make
         the word, modifies self.hand by using up the letters in the given word.
-
         Returns True if the word was able to be made with the letter in
         the hand; False otherwise.
         
@@ -88,16 +82,59 @@ class Hand(object):
         returns: Boolean (if the word was or was not made)
         """
         # Your code here
-        raise NotImplementedError()
+        try :
+            tmpHand = self.hand.copy()
+            for char in word:
+                if char in tmpHand.keys():
+                    if tmpHand[char] > 0 :
+                        tmpHand[char] -= 1
+                    else :
+                        return(False)
+                else:
+                    return(False)
+            self.hand = tmpHand.copy()
+            return(True)
+        except : 
+            raise NotImplementedError()
 
     
+#myHand = Hand(7)
+#print myHand
+#print myHand.calculateLen()
+#
+#myHand.setDummyHand('aazzmsp')
+#print myHand
+#print myHand.calculateLen()
+#
+#print(myHand.update('zaaa'))
+#print myHand
+    
+myHand = Hand(8)
+myHand.setDummyHand('eaasxpwk')
+myHand.update('tea')#: False
+print myHand
+#aaekpswx
+
+myHand = Hand(9)
+myHand.setDummyHand('eapaedkea')
+myHand.update('pear')#: False
+print myHand
+#aaadeeekp
+
+myHand = Hand(11)
+myHand.setDummyHand('eceeefclhtb')
+myHand.update('coffee')#: False
+print myHand
+#bcceeeefhlt
+
+myHand = Hand(9)
+myHand.setDummyHand('mmmpuuqhb')
+myHand.update('plum')#: False
+print myHand
+#bhmmmpquu
+
 myHand = Hand(7)
+myHand.setDummyHand('aulqqik')
+myHand.update('quail')#: True
 print myHand
-print myHand.calculateLen()
-
-myHand.setDummyHand('aazzmsp')
-print myHand
-print myHand.calculateLen()
-
-myHand.update('za')
-print myHand
+#kq
