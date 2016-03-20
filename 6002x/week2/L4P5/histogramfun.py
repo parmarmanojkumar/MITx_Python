@@ -1,5 +1,5 @@
 import pylab
-
+import re
 # You may have to change this path
 WORDLIST_FILENAME = "words.txt"
 
@@ -27,6 +27,12 @@ def plotVowelProportionHistogram(wordList, numBins=15):
     """
     
 
-if __name__ == '__main__':
-    wordList = loadWords()
-    plotVowelProportionHistogram(wordList)
+#if __name__ == '__main__':
+#    wordList = loadWords()
+#    plotVowelProportionHistogram(wordList)
+
+wordList = loadWords()[1:100]
+vowelRatio = []
+for word in wordList:
+    vowelRatio.append( len(re.findall("[aeiou]", word,re.IGNORECASE)) / float(len(word)))
+pylab.hist(vowelRatio, bins = 15)  

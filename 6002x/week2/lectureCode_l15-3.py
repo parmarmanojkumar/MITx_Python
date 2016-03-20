@@ -22,23 +22,28 @@ def stdDev(X):
 
 
 
+def CV(X):
+    mean = sum(X)/float(len(X))
+    try : 
+        return stdDev(X)/mean
+    except ZeroDivisionError:
+        return float('NaN')
 
 
-
-##vals = []
-##for i in range(100000):
-##    num = random.random()
-##    vals.append(num)
-##pylab.hist(vals, bins = 11)
-##xmin, xmax = pylab.xlim()
-##ymin, ymax = pylab.ylim()
-##print 'x-range =', xmin, '-', xmax
-##print 'y-range =', ymin, '-', ymax
-##pylab.figure
-##pylab.hist(vals, bins = 11)
-###pylab.xlim(-1.0, 2.0)
-##pylab.show()
-##assert False
+vals = []
+for i in range(100000):
+    num = random.random()
+    vals.append(num)
+pylab.hist(vals, bins = 11)
+xmin, xmax = pylab.xlim()
+ymin, ymax = pylab.ylim()
+print 'x-range =', xmin, '-', xmax
+print 'y-range =', ymin, '-', ymax
+pylab.figure
+pylab.hist(vals, bins = 11)
+pylab.xlim(-1.0, 2.0)
+pylab.show()
+#assert False
 
 
 

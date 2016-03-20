@@ -110,7 +110,7 @@ def flipPlot2(minExp, maxExp, numTrials):
     pylab.title('Mean abs(#Heads - #Tails) ('
                 + str(numTrials) + ' Trials)')
     pylab.xlabel('Number of Flips')
-    pylab.ylabel('Mean abs(#Heads - #Tails'))
+    pylab.ylabel('Mean abs(#Heads - #Tails)')
     pylab.plot(xAxis, meanDiffs, 'bo')
     pylab.semilogx()
     pylab.semilogy()

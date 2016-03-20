@@ -38,7 +38,7 @@ class intDict(object):
 
 
 D = intDict(29)
-for i in range(20):
+for i in range(29):
     #choose a random int in range(10**5)
     key = random.choice(range(10**5))
     D.addEntry(key, i)

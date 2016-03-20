@@ -72,10 +72,10 @@ def observe_prob(numBuckets, numInsertions, numTrials):
 
 
 def main():
-    hash_table = intDict(25)
-    hash_table.addEntry(15, 'a')
-#    random.seed(1) # Uncomment for consistent results
-    for i in range(20):
+    hash_table = intDict(1000)
+#    hash_table.addEntry(15, 'a')
+    random.seed(1) # Uncomment for consistent results
+    for i in range(50):
        hash_table.addEntry(int(random.random() * (10 ** 9)), i)
     hash_table.addEntry(15, 'b')
     print hash_table.buckets  #evil
