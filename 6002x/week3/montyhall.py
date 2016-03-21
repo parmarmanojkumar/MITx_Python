@@ -14,7 +14,7 @@ def randomChoose(guessDoor, prizeDoor):
     if guessDoor == 2:
         return random.choice([1,3])
     return random.choice([1,2])
-    
+
 def simMontyHall(numTrials, chooseFcn):
     stickWins, switchWins, noWin = (0, 0, 0)
     prizeDoorChoices = [1,2,3]
