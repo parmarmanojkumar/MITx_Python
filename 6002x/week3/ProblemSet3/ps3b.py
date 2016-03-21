@@ -511,7 +511,7 @@ def simulationWithDrug(numViruses, maxPop, maxBirthProb, clearProb, resistances,
             virusPop[j] = virusPop[j] + patient.getTotalPop()
             virusResistPop[j] = virusResistPop[j] + patient.getResistPop("guttagonol")
         patient.addPrescription("guttagonol")
-        for j in range(step1,step2) :
+        for j in range(step1,steps) :
             patient.update()
             virusPop[j] = virusPop[j] + patient.getTotalPop()
             virusResistPop[j] = virusResistPop[j] + patient.getResistPop("guttagonol")
@@ -541,19 +541,21 @@ def simulationWithDrug(numViruses, maxPop, maxBirthProb, clearProb, resistances,
 #simulationWithoutDrug(100, 1000, 0.1, 0.05, 100)
 #simulationWithoutDrug(100, 1000, 0.99, 0.1, 200)
 
-#problem4
-virus = ResistantVirus(1.0, 0.0, {}, 0.0)
-patient = TreatedPatient([virus], 100)
-for i in range(100): patient.update()
+##problem4
+#virus = ResistantVirus(1.0, 0.0, {}, 0.0)
+#patient = TreatedPatient([virus], 100)
+#for i in range(100): patient.update()
+#
+#virus1 = ResistantVirus(1.0, 0.0, {"drug1": True}, 0.0)
+#virus2 = ResistantVirus(1.0, 0.0, {"drug1": False, "drug2": True}, 0.0)
+#virus3 = ResistantVirus(1.0, 0.0, {"drug1": True, "drug2": True}, 0.0)
+#patient = TreatedPatient([virus1, virus2, virus3], 100)
+#
+#print patient.getResistPop(['drug1'])#: 2
+#print patient.getResistPop(['drug2'])#: 2
+#print patient.getResistPop(['drug1','drug2'])#: 1
+#print patient.getResistPop(['drug3'])#: 0
+#print patient.getResistPop(['drug1', 'drug3'])#: 0
+#print patient.getResistPop(['drug1','drug2', 'drug3'])#: 0
 
-virus1 = ResistantVirus(1.0, 0.0, {"drug1": True}, 0.0)
-virus2 = ResistantVirus(1.0, 0.0, {"drug1": False, "drug2": True}, 0.0)
-virus3 = ResistantVirus(1.0, 0.0, {"drug1": True, "drug2": True}, 0.0)
-patient = TreatedPatient([virus1, virus2, virus3], 100)
-
-print patient.getResistPop(['drug1'])#: 2
-print patient.getResistPop(['drug2'])#: 2
-print patient.getResistPop(['drug1','drug2'])#: 1
-print patient.getResistPop(['drug3'])#: 0
-print patient.getResistPop(['drug1', 'drug3'])#: 0
-print patient.getResistPop(['drug1','drug2', 'drug3'])#: 0
+simulationWithDrug(75, 100, .8, 0.1, {"guttagonol": True}, 0.8, 1)
