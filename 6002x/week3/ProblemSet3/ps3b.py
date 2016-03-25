@@ -169,7 +169,7 @@ class Patient(object):
             except NoChildException:
                 pass
 
-        return len(self.viruses)
+        return self.getTotalPop()
 
 
 
@@ -206,7 +206,7 @@ def simulationWithoutDrug(numViruses, maxPop, maxBirthProb, clearProb,
     pylab.title("SimpleVirus simulation")
     pylab.xlabel("Time Steps")
     pylab.ylabel("Average Virus Population")
-    pylab.legend()
+    pylab.legend(loc="best")
     pylab.show()
 
 
@@ -271,6 +271,7 @@ class ResistantVirus(SimpleVirus):
         returns: True if this virus instance is resistant to the drug, False
         otherwise.
         """
+        assert drug in self.resistance.keys()
         if self.resistance.has_key(drug):
             return self.resistance[drug]
         else:
@@ -323,26 +324,25 @@ class ResistantVirus(SimpleVirus):
         maxBirthProb and clearProb values as this virus. Raises a
         NoChildException if this virus particle does not reproduce.
         """
-        trueResistance = True
+
         for drug in activeDrugs:
             if not self.isResistantTo(drug):
-                trueResistance = False
                 raise NoChildException
 
-        if trueResistance:
-            reproduceProb = super(ResistantVirus, self).getMaxBirthProb() * (\
-                                                                1-popDensity)
-            if random.random() <= reproduceProb:
-                locReistance = dict(self.resistance)
-                for  key in locReistance.keys():
-                    if random.random() <= self.mutProb:
-                        locReistance[key] = (not locReistance[key])
-                return ResistantVirus(\
-                                        self.getMaxBirthProb(),\
-                                        self.getClearProb(),\
-                                        locReistance, self.mutProb)
-            else:
-                raise NoChildException
+
+        reproduceProb = super(ResistantVirus, self).getMaxBirthProb() * (\
+                                                            1-popDensity)
+        if random.random() <= reproduceProb:
+            locReistance = dict(self.resistance)
+            for  key in locReistance.keys():
+                if random.random() <= self.mutProb:
+                    locReistance[key] = (not locReistance[key])
+            return ResistantVirus(\
+                                    self.getMaxBirthProb(),\
+                                    self.getClearProb(),\
+                                    locReistance, self.mutProb)
+        else:
+            raise NoChildException
     ## pylint: enable=arguments-differ
 
 
@@ -568,4 +568,4 @@ def simulationWithDrug(numViruses, maxPop, maxBirthProb, clearProb, \
 #print patient.getResistPop(['drug1'])
 #print patient.getTotalPop()
 #random.seed(0)
-simulationWithDrug(75, 100, .8, 0.1, {"guttagonol": True}, 0.8, 1)
+simulationWithDrug(75, 1000, .6, 0.1, {"guttagonol": True}, 0.3, 10)
