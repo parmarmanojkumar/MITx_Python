@@ -4,11 +4,11 @@ Created on Sat Apr  2 14:01:56 2016
 
 @author: Manojkumar Parmar VirKrupa
 
-@Github Repo :
+@Github Repo : MITx_Python
 
-Modified on :
+Modified on : 02/04/2016
 
-Version :
+Version : 1.0
 
 Remarks:
 """
